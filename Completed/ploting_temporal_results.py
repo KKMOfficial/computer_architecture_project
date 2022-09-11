@@ -1,0 +1,20 @@
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+import numpy as np
+x_file = input("enter x axis file name : ")
+x_label = x_file.replace(".txt","").replace('_',' ')
+y_file = input("enter y axis file name : ")
+y_label = y_file.replace(".txt","").replace('_',' ')
+x_list = open(x_file, 'r').read().replace('\t','').split(',')
+y_list = open(y_file, 'r').read().replace('\t','').split(',')
+fig, ax = plt.subplots()
+ax.plot(x_list,y_list)
+plt.xlabel(x_label)
+plt.ylabel(y_label)
+start, end = ax.get_xlim()
+ax.xaxis.set_ticks(np.arange(start, end, 20.0))
+# ax.xaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))
+start, end = ax.get_ylim()
+ax.yaxis.set_ticks(np.arange(start, end, 20.0))
+# ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))
+plt.show()
